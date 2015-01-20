@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One-Click JWT Decoder & Validator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/jose@5.2.0/dist/browser/index.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JWT Decoder & Validator</h1>
+            <p>Secure, client-side JWT decoding and validation - No data leaves your browser</p>
+        </header>
+        
+        <main class="main-content">
+            <!-- Left Column: Encoded JWT -->
+            <div class="column left-column">
+                <h2>Encoded JWT</h2>
+                <textarea 
+                    id="jwt-input" 
+                    placeholder="Paste your JWT token here..."
+                    spellcheck="false"
+                ></textarea>
+            </div>
+            
+            <!-- Right Column: Decoded & Verified -->
+            <div class="column right-column">
+                <h2>Decoded & Verified</h2>
+                
+                <!-- Header Section -->
+                <div class="section header-section">
+                    <h3>Header: ALGORITHM & TOKEN TYPE</h3>
+                    <pre id="header-content" class="json-content"></pre>
+                </div>
+                
+                <!-- Payload Section -->
+                <div class="section payload-section">
+                    <h3>Payload: DATA</h3>
+                    <pre id="payload-content" class="json-content"></pre>
+                    <div id="timestamp-info" class="timestamp-info"></div>
+                </div>
+                
+                <!-- Verify Signature Section -->
+                <div class="section signature-section">
+                    <h3>Verify Signature</h3>
+                    <div class="verification-controls">
+                        <div class="control-group">
+                            <label for="algorithm-select">Algorithm:</label>
+                            <select id="algorithm-select">
+                                <option value="HS256">HS256</option>
+                                <option value="HS384">HS384</option>
+                                <option value="HS512">HS512</option>
+                                <option value="RS256">RS256</option>
+                                <option value="RS384">RS384</option>
+                                <option value="RS512">RS512</option>
+                                <option value="ES256">ES256</option>
+                                <option value="ES384">ES384</option>
+                                <option value="ES512">ES512</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="secret-input">Secret / Public Key:</label>
+                            <textarea 
+                                id="secret-input" 
+                                placeholder="Enter your secret key or public key..."
+                                spellcheck="false"
+                            ></textarea>
+                        </div>
+                        <div id="verification-status" class="verification-status">
+                            Signature Not Verified
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <div id="error-message" class="error-message hidden"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
